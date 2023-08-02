@@ -231,6 +231,7 @@ Class Action {
 			move_uploaded_file($image_tmp, $image_path);
 		}
 
+
 		
 		foreach($_POST as $k => $v){
 			if(!in_array($k, array('id','status')) && !is_numeric($k)){
@@ -244,6 +245,7 @@ Class Action {
 				}
 			}
 		}
+
 		if(isset($status)){
 					$data .= ", status=1 ";
 		}else{
@@ -255,8 +257,13 @@ Class Action {
 			exit;
 		}
 
-		
 
+		if(isset($image_path)){
+			$data .= ", img='../".$image_path."' ";
+		}
+
+
+		error_log("----------->".$data);
 
 		if(empty($id)){
 			$save = $this->db->query("INSERT INTO products set $data");

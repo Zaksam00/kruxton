@@ -114,7 +114,7 @@ endif;
                             ?>
                             <div class="col-md-2 mb-2">
                                 <div class="prod-item text-center " data-json = '<?php echo json_encode($row) ?>' data-category-id="<?php echo $row['category_id'] ?>">
-                                    <img src="../assets/uploads/element-banner2-right.jpg" class="rounded" width="100%">
+                                    <img src="<?php echo $row['img'] ?>" class="rounded" width="100%">
                                         <span> 
                                             <?php echo $row['name'] ?>
                                         </span>
