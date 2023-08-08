@@ -4,26 +4,26 @@
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
+    //   function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
-          ['Category', 'Sold Per Day'],
-          ['Chinese',     11],
-          ['Mexican',      2],
-          ['Pizza',  2],
-          ['Japanese', 2],
-          ['Thai',    7]
-        ]);
+    //     var data = google.visualization.arrayToDataTable([
+    //       ['Category', 'Sold Per Day'],
+    //       ['Chinese',     11],
+    //       ['Mexican',      2],
+    //       ['Pizza',  2],
+    //       ['Japanese', 2],
+    //       ['Thai',    7]
+    //     ]);
 
-        var options = {
-          title: 'Recent Sale'
-        };
+    //     var options = {
+    //       title: 'Recent Sale'
+    //     };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    //     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
-        chart.draw(data, options);
-      }
-    </script>
+    //     chart.draw(data, options);
+    //   }
+    // </script>
 <style>
    span.float-right.summary_icon {
     font-size: 3rem;
@@ -71,7 +71,7 @@
                 </div>
             </div>      			
         </div> -->
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
         <div class="row">
         <div class="col-md-6 mb-3">
             <div class="card bg-white border-0 circle-primary theme-circle">
@@ -123,7 +123,7 @@
                         <div class="d-flex align-items-center">
                             <span class="text-dark mr-3">
                                 <h3 class="">2</h3>
-                            </span>
+                            </span> -->
                         </div>
                     </div>
                 </div>

@@ -30,9 +30,8 @@
 			<?php if($_SESSION['login_type'] == 1): ?>
 			<!-- <div class="mx-2 text-white">Systems</div> -->
 			<a href="index.php?page=users" class="nav-item nav-users"><span class='icon-field'><i class="fa fa-users mr-3"></i></span> Users</a>
-			<a href="index.php?page=site_settings" class="nav-item nav-site_settings"><span class='icon-field'><i class="fa fa-cogs mr-3" ></i></span> System Settings</a>
-				<a href="mailto:mayuri.infospace@gmail.com" class="nav-item nav-email_author"><span class='icon-field'><i class="fa fa-envelope mr-3"></i></span> Email Author</a>
-				<a href="https://mayurik.com" target="_blank" class="nav-item nav-visit_website"><span class='icon-field'><i class="fa fa-download mr-3"></i></span>More Sourcecodes</a>
+			<!-- <a href="index.php?page=site_settings" class="nav-item nav-site_settings"><span class='icon-field'><i class="fa fa-cogs mr-3" ></i></span> System Settings</a> -->
+				
 			<?php endif; ?>
 		</div>
 

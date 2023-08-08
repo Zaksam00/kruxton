@@ -56,7 +56,7 @@ header("location:index.php?page=home");
   			<div class="card col-md-3 ml-5">
   				<div class="card-body py-5 px-1">
   					<h4 class="text-dark text-center mb-5"><!-- ?php echo $_SESSION['system']['name'] ?> -->
-  						<img src="assets/uploads/logo.png" width="300px">
+  						<img src="assets/uploads/logo.png" width="300px" >
   					</h4>
   					<form id="login-form" >
   						<div class="form-group">

@@ -173,7 +173,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `type`) VALUES
-(3, 'Mayuri K.', 'mayuri.infospace@gmail.com', 'cd92a26534dba48cd785cdcc0b3e6bd1', 1);
+(3, 'ScriptSurfers', 'Script.Surfers@gmail.com', 'cd92a26534dba48cd785cdcc0b3e6bd1', 1);
 
 --
 -- Indexes for dumped tables

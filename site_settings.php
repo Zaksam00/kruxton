@@ -61,7 +61,7 @@ if($qry->num_rows > 0){
 	
 	<div class="card col-lg-12">
 		<div class="card-body">
-			<form action="" id="manage-settings">
+			<!-- <form action="" id="manage-settings">
 				<div class="form-group">
 					<label for="name" class="control-label">System Name</label>
 					<input type="text" class="form-control" id="name" name="name" value="<?php echo isset($meta['name']) ? $meta['name'] : '' ?>" required>
@@ -89,7 +89,7 @@ if($qry->num_rows > 0){
 				<center>
 					<button class="btn btn-info btn-primary btn-block col-md-2">Save</button>
 				</center>
-			</form>
+			</form> -->
 		</div>
 	</div>
 	<style>
