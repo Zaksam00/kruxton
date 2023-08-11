@@ -285,7 +285,7 @@ Class Action {
 		extract($_POST);
 		$data = " total_amount = '$total_amount' ";
 		$data .= ", amount_tendered = '$total_tendered' ";
-		$data .= ", order_number = '$order_number' ";
+		$data .= ", order_number = '$order_number' ";		
 		if(empty($id)){
 			$i = 0;
 			while($i == 0){
@@ -297,6 +297,12 @@ Class Action {
 				}
 			}
 			$data .= ", ref_no = '$ref_no' ";
+			if (isset($_SESSION['login_id'])) {
+				$id_user = $_SESSION['login_id'];
+			}
+			$data .= ", id_user = '$id_user' ";
+			error_log("------datadata----->".$data);
+
 			$save = $this->db->query("INSERT INTO orders set $data");
 			if($save){
 				$id = $this->db->insert_id;

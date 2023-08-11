@@ -53,19 +53,20 @@ CREATE TABLE `orders` (
   `total_amount` float NOT NULL,
   `amount_tendered` float NOT NULL,
   `order_number` int(30) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp()
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `ref_no`, `total_amount`, `amount_tendered`, `order_number`, `date_created`) VALUES
-(1, '278998154978', 904, 1000, 1001, '2023-02-03 19:17:03'),
-(2, '091428583362', 1343, 0, 1005, '2023-02-03 19:17:34'),
-(3, '543076159999', 1622, 0, 1004, '2023-02-03 19:17:56'),
-(4, '967470759448', 742, 1000, 1003, '2023-02-03 19:20:26'),
-(5, '300535882264', 1354, 1400, 1006, '2023-02-03 20:12:43');
+INSERT INTO `orders` (`id`, `ref_no`, `total_amount`, `amount_tendered`, `order_number`, `date_created`,`id_user`) VALUES
+(1, '278998154978', 904, 1000, 1001, '2023-02-03 19:17:03',3),
+(2, '091428583362', 1343, 0, 1005, '2023-02-03 19:17:34',3),
+(3, '543076159999', 1622, 0, 1004, '2023-02-03 19:17:56',3),
+(4, '967470759448', 742, 1000, 1003, '2023-02-03 19:20:26',3),
+(5, '300535882264', 1354, 1400, 1006, '2023-02-03 20:12:43',3);
 
 -- --------------------------------------------------------
 

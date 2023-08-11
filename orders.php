@@ -44,13 +44,31 @@
 									<th>Order Number</th>
 									<th>Amount</th>
 									<th>Status</th>
+									<th>Staff</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php 
-								$i = 1;
-								$order = $conn->query("SELECT * FROM orders order by unix_timestamp(date_created) desc ");
+
+								$i = 1; 
+								$loginName = $_SESSION['login_name'];
+								$userType = $_SESSION['login_type']; 
+								if ($userType == 1) {
+									// Admin user: Retrieve all staff orders
+									$orderQuery  = "SELECT o.*, u.name 
+												FROM orders o
+												LEFT JOIN users u ON o.id_user = u.id
+												ORDER BY UNIX_TIMESTAMP(o.date_created) DESC";
+								} else {
+									// Staff user: Retrieve orders associated with the logged-in user
+									$orderQuery  = "SELECT o.*, u.name 
+												FROM orders o
+												LEFT JOIN users u ON o.id_user = u.id
+												WHERE u.name = '$loginName'
+												ORDER BY UNIX_TIMESTAMP(o.date_created) DESC";
+								}
+								$order = $conn->query($orderQuery);								
 								while($row=$order->fetch_assoc()):
 								?>
 								<tr>
@@ -73,6 +91,9 @@
 										<?php else: ?>
 											<span class="badge badge-primary">Unpaid</span>
 										<?php endif; ?>
+									</td>
+									<td class="text-center">
+										<p><?php echo $row['name'] ?></p>
 									</td>
 									<td class="text-center">
 										<button class="btn btn-sm btn-primary " type="button" onclick="location.href='billing/index.php?id=<?php echo $row['id'] ?>'" data-id="<?php echo $row['id'] ?>" ><i class="fa fa-edit"></i></button>

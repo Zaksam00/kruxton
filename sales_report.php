@@ -21,6 +21,7 @@
                             <th class="">Date</th>
                             <th class="">Invoice</th>
                             <th class="">Order Number</th>
+                            <th class="">Staff</th>
                             <th class="">Amount</th>
                         </tr>
                     </thead>
@@ -29,12 +30,35 @@
  Visit website : www.mayurik.com -->  
                     <tbody>
 			          <?php
-                      $i = 1;
-                      $total = 0;
-                      $sales = $conn->query("SELECT * FROM orders where amount_tendered > 0 and date_format(date_created,'%Y-%m') = '$month' order by unix_timestamp(date_created) asc ");
-                      if($sales->num_rows > 0):
-			          while($row = $sales->fetch_array()):
-                        $total += $row['total_amount'];
+                        $i = 1;
+                        $total = 0;
+                        $loginName = $_SESSION['login_name'];
+                        $userType = $_SESSION['login_type'];
+
+                        if ($userType == 1) {
+                            // Admin user: Retrieve all staff orders with amount tendered > 0 for the specified month
+                            $salesQuery = "SELECT o.*, u.name 
+                                            FROM orders o
+                                            LEFT JOIN users u ON o.id_user = u.id
+                                            WHERE o.amount_tendered > 0 
+                                            AND date_format(o.date_created, '%Y-%m') = '$month' 
+                                            ORDER BY UNIX_TIMESTAMP(o.date_created) ASC";
+                        } else {
+                            // Staff user: Retrieve orders associated with the logged-in user with amount tendered > 0 for the specified month
+                            $salesQuery =   "SELECT o.*, u.name 
+                                                        FROM orders o
+                                                        LEFT JOIN users u ON o.id_user = u.id
+                                                        WHERE o.amount_tendered > 0 
+                                                        AND date_format(o.date_created, '%Y-%m') = '$month' 
+                                                        AND o.id_user = (SELECT id FROM users us WHERE us.name = '$loginName') 
+                                                        ORDER BY UNIX_TIMESTAMP(o.date_created) ASC";
+                        }
+
+                            $sales = $conn->query($salesQuery);
+                      
+                            if($sales->num_rows > 0):
+			                while($row = $sales->fetch_array()):
+                            $total += $row['total_amount'];
 			          ?>
 			          <tr>
                         <td class="text-center"><?php echo $i++ ?></td>
@@ -48,8 +72,14 @@
                             <p> <b><?php echo $row['order_number'] ?></b></p>
                         </td>
                         <td>
+                            <p> <b><?php echo $row['name'] ?></b></p>
+                        </td>
+                        <td>
                             <p class="text-right"> <b><?php echo number_format($row['total_amount'],2) ?></b></p>
                         </td>
+
+
+                        
                     </tr>
                     <?php 
                         endwhile;
