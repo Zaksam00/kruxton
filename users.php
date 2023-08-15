@@ -21,7 +21,9 @@
 					<th>Name</th>
 					<th>Username</th>
 					<th>Type</th>
+					<th>PIN</th>
 					<th>Action</th>
+					
 				</tr>
 			</thead>
 			<tbody>
@@ -46,6 +48,9 @@
 				 	<td>
 				 		<?php echo $type[$row['type']] ?>
 				 	</td>
+					 <td>
+				 		<?php echo $row['PIN'] ?>
+				 	</td>
 				 	<td>
 				 		<center>
 							<div class="btn-group">
@@ -60,6 +65,7 @@
 							</div>
 						</center>
 				 	</td>
+					
 				 </tr>
 				<?php endwhile; ?>
 			</tbody>

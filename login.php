@@ -65,49 +65,54 @@ header("location:index.php?page=home");
   <main id="main">
     <div class="align-self-center w-100">
       <div id="login-center" class="row justify-content-start">
-        <!-- Left Column: PIN Form -->
+        <!-- Left Column: pin Form -->
         <div class="col-md-6 left-column">
           <div class="card">
             <div class="card-body py-5 px-1">
               <h4 class="text-dark text-center mb-5">
                 <img src="assets/uploads/logo.png" width="300px" >
               </h4>
-					<form id="pin-form">
+					<form id="pin-form" method="POST" action="ajax.php?action=login3 ">
 						<div class="form-group">
 
 						<div class="input-group mb-2" >
 							<div class="input-group-prepend ">
 								<div class="input-group-text  bg-transparent border-0"><i class="fa fa-key"></i></div>
 							</div>
-							<input type="password" id="pin" name="pin" class="form-control border-0" placeholder="PIN">
+							<input type="password" id="pin" name="pin" class="form-control border-0" placeholder="pin">
 						</div>
 
 
-						<div class="numeric-keypad">
-									<div class="row">
-										<div class="col-md-4 keypad-button" data-value="1">1</div>
-										<div class="col-md-4 keypad-button" data-value="2">2</div>
-										<div class="col-md-4 keypad-button" data-value="3">3</div>
-									</div>
-									<div class="row">
-										<div class="col-md-4 keypad-button" data-value="4">4</div>
-										<div class="col-md-4 keypad-button" data-value="5">5</div>
-										<div class="col-md-4 keypad-button" data-value="6">6</div>
-									</div>
-									<div class="row">
-										<div class="col-md-4 keypad-button" data-value="7">7</div>
-										<div class="col-md-4 keypad-button" data-value="8">8</div>
-										<div class="col-md-4 keypad-button" data-value="9">9</div>
-									</div>
-									<div class="row">
-										<div class="col-md-4"></div>
-										<div class="col-md-4 keypad-button" data-value="0">0</div>
-										<div class="col-md-4"></div>
-									</div>
-								</div>
+                        <!--after input of pin !-->
+						<div class="numeric-keypad text-center">
+   							 <table class="mx-auto" style="width: 90%;">
+								<tr>
+									<td class="keypad-button" data-value="1">1</td>
+									<td class="keypad-button" data-value="2">2</td>
+									<td class="keypad-button" data-value="3">3</td>
+								</tr>
+								<tr>
+									<td class="keypad-button" data-value="4">4</td>
+									<td class="keypad-button" data-value="5">5</td>
+									<td class="keypad-button" data-value="6">6</td>
+								</tr>
+								<tr>
+									<td class="keypad-button" data-value="7">7</td>
+									<td class="keypad-button" data-value="8">8</td>
+									<td class="keypad-button" data-value="9">9</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td class="keypad-button" data-value="0">0</td>
+									<td></td>
+								</tr>
+							</table>
+						</div>
+
+								
 				
 						</div>
-						<center><button class="btn col-md-12 btn-primary">Enter PIN</button></center>
+						<center><button class="btn col-md-12 btn-primary">Login</button></center>
 					</form>
             </div>
           </div>
@@ -182,13 +187,40 @@ header("location:index.php?page=home");
 </script>	
 
 <script>
-	$(document).ready(function() {
-        // Handle numeric keypad button clicks
-        $('.keypad-button').click(function() {
-            var currentValue = $('#pin').val();
-            var digit = $(this).data('value');
-            $('#pin').val(currentValue + digit);
+$(document).ready(function() {
+    // Handle numeric keypad button clicks
+    $('.keypad-button').click(function() {
+        var currentValue = $('#pin').val();
+        var digit = $(this).data('value');
+        $('#pin').val(currentValue + digit);
+    });
+    
+    // Handle pin form submission
+    $('#pin-form').submit(function(e) {
+        e.preventDefault();
+        var enteredPIN = $('#pin').val();
+        
+        // Send the entered pin to the server for verification
+        $.ajax({
+            url: 'ajax.php?action=login3', // Use the new action for pin verification
+            method: 'POST',
+            data:$(this).serialize(),
+            success: function(resp) {
+           		 if (resp == 1) {
+                location.href = 'index.php?page=home'; // Replace with your desired page
+                } else {
+                    // Display an error message if the pin is incorrect
+                    alert('Incorrect pin. Please try again.');
+                    $('#pin').val('');
+                }
+            },
+            error: function() {
+                // Handle AJAX error here
+                alert('An error occurred. Please try again later.');
+            }
         });
     });
+});
 </script>
+
 </html>

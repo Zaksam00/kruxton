@@ -9,7 +9,7 @@
             <div class="row justify-content-center pt-4">
                 <label for="" class="mt-2">Month</label>
                 <div class="col-sm-3">
-                    <input type="month" name="month" id="month" value="<?php echo $month ?>" class="form-control">
+                    <input type="date" name="month" id="month" value="<?php echo $month ?>" class="form-control">
                 </div>
             </div>
             <hr>
@@ -38,18 +38,18 @@
                         if ($userType == 1) {
                             // Admin user: Retrieve all staff orders with amount tendered > 0 for the specified month
                             $salesQuery = "SELECT o.*, u.name 
-                                            FROM orders o
-                                            LEFT JOIN users u ON o.id_user = u.id
-                                            WHERE o.amount_tendered > 0 
-                                            AND date_format(o.date_created, '%Y-%m') = '$month' 
-                                            ORDER BY UNIX_TIMESTAMP(o.date_created) ASC";
+                                                        FROM orders o
+                                                        LEFT JOIN users u ON o.id_user = u.id
+                                                        WHERE o.amount_tendered > 0 
+                                                        AND DATE(o.date_created) = '$month'
+                                                        ORDER BY UNIX_TIMESTAMP(o.date_created) ASC";
                         } else {
                             // Staff user: Retrieve orders associated with the logged-in user with amount tendered > 0 for the specified month
                             $salesQuery =   "SELECT o.*, u.name 
                                                         FROM orders o
                                                         LEFT JOIN users u ON o.id_user = u.id
                                                         WHERE o.amount_tendered > 0 
-                                                        AND date_format(o.date_created, '%Y-%m') = '$month' 
+                                                        AND DATE(o.date_created) = '$month' 
                                                         AND o.id_user = (SELECT id FROM users us WHERE us.name = '$loginName') 
                                                         ORDER BY UNIX_TIMESTAMP(o.date_created) ASC";
                         }

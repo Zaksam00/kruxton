@@ -28,8 +28,7 @@ Class Action {
 			return 3;
 		}
 	}
-	function login2(){
-		
+	function login2(){	
 		extract($_POST);		
 		$qry = $this->db->query("SELECT * FROM complainants where email = '".$email."' and password = '".md5($password)."' ");
 		if($qry->num_rows > 0){
@@ -42,6 +41,38 @@ Class Action {
 			return 3;
 		}
 	}
+    // function login3() {
+	// 	$pin = $_POST['PIN']; // Get the entered PIN from the POST data
+	
+	// 	// Verify the PIN against the database (You need to adapt this logic to your DB schema)
+	// 	$pinFromDB = $this->db->query("SELECT * FROM users where PIN = '".$pin."' "); // Implement this function to get the PIN from the database
+	// 	if ($pinFromDB == $pin) {
+	// 		foreach ($qry->fetch_array() as $key => $value) {
+	// 			if($key != 'passwors' && !is_numeric($key))
+	// 				$_SESSION['login_'.$key] = $value;
+	// 		}
+	// 		$_SESSION['login2_'.$key] = 123; // Set a session variable for login
+	// 		c
+	// 		return 1; // Return 1 to indicate successful login
+	// 	} else {
+	// 		error_log("0----------->".$pinFromDB);
+	// 		return 0; // Return 0 to indicate failed login
+	// 	}
+	// }
+	function login3(){
+		extract($_POST);	
+		$qry = $this->db->query("SELECT * FROM users where pin = '".$pin."' ");
+		if($qry->num_rows > 0){
+			foreach ($qry->fetch_array() as $key => $value) {
+				if($key != 'passwors' && !is_numeric($key))
+					$_SESSION['login_'.$key] = $value;			
+			}
+			return 1;
+		}else{
+			return 3;
+		}
+	}
+	
 	function logout(){
 		session_destroy();
 		foreach ($_SESSION as $key => $value) {
@@ -63,6 +94,7 @@ Class Action {
 		$data .= ", username = '$username' ";
 		if(!empty($password))
 		$data .= ", password = '".md5($password)."' ";
+		$data .= ", PIN = '$pin' ";
 		$data .= ", type = '$type' ";
 		$chk = $this->db->query("Select * from users where username = '$username' and id !='$id' ")->num_rows;
 		if($chk > 0){

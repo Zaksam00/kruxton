@@ -166,15 +166,16 @@ CREATE TABLE `users` (
   `name` text NOT NULL,
   `username` varchar(200) NOT NULL,
   `password` text NOT NULL,
-  `type` tinyint(1) NOT NULL DEFAULT 3 COMMENT '1=Admin,2=Staff'
+  `type` tinyint(1) NOT NULL DEFAULT 3 COMMENT '1=Admin,2=Staff',
+  `PIN` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `password`, `type`) VALUES
-(3, 'ScriptSurfers', 'Script.Surfers@gmail.com', 'cd92a26534dba48cd785cdcc0b3e6bd1', 1);
+INSERT INTO `users` (`id`, `name`, `username`, `password`, `type`,`PIN`) VALUES
+(3, 'ScriptSurfers', 'Script.Surfers@gmail.com', 'cd92a26534dba48cd785cdcc0b3e6bd1', 1,1234);
 
 --
 -- Indexes for dumped tables

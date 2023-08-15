@@ -27,6 +27,13 @@ foreach($user->fetch_array() as $k =>$v){
 			<?php if(isset($meta['id'])): ?>
 			<small><i>Leave this blank if you dont want to change the password.</i></small>
 		<?php endif; ?>
+
+
+		<div class="form-group">
+			<label for="pin">Pin</label>
+			<input type="text" name="pin" id="pin" class="form-control" value="<?php echo isset($meta['PIN']) ? $meta['PIN']: '' ?>" autocomplete="off">
+		</div>
+
 		</div>
 		<?php if(isset($meta['type']) && $meta['type'] == 3): ?>
 			<input type="hidden" name="type" value="3">
