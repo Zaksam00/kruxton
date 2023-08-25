@@ -19,10 +19,10 @@
         background: linear-gradient(to right, #f25858 7%, #ff7840 50%, #ff5140 105%);
     }
     main .card{
-        height:calc(100%);
+        height:calc(75%);
     }
     main .card-body{
-        height:calc(100%);
+        height:calc(100 %);
         overflow: auto;
         padding: 5px;
         position: relative;
@@ -71,6 +71,10 @@
     .cat-item:hover{
         opacity: .8;
     }
+    .scrollable-container {
+    max-height: 400px; /* Adjust this value as needed */
+    overflow-y: auto;
+        }
 </style>
 <?php 
 if(isset($_GET['id'])):
@@ -141,6 +145,7 @@ endif;
                 </a></span>
                 </div>
                <div class="card-body">
+               <div class="scrollable-container">
             <form action="" id="manage-order">
                 <input type="hidden" name="id" value="<?php echo isset($_GET['id']) ? $_GET['id'] : '' ?>">
                 <div class="bg-white" id='o-list'>
@@ -217,6 +222,7 @@ endif;
                        </table>
                    </div>
             </form>
+                    </div>
                </div>
            </div>
         </div>

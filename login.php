@@ -79,7 +79,7 @@ header("location:index.php?page=home");
 							<div class="input-group-prepend ">
 								<div class="input-group-text  bg-transparent border-0"><i class="fa fa-key"></i></div>
 							</div>
-							<input type="password" id="pin" name="pin" class="form-control border-0" placeholder="pin">
+							<input type="password" id="pin" name="pin" class="form-control border-0" placeholder="pin" autofocus>
 						</div>
 
 
